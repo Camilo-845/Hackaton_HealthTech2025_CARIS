@@ -32,18 +32,31 @@ export default function RegistroPage() {
     e.preventDefault()
     setIsLoading(true)
 
+    // Create a mutable copy to work with
+    const processedFormData = { ...formData }
+
     // Calculate gestational week from FUM if provided
-    if (formData.fum && !formData.semanaGestacion) {
-      const fumDate = new Date(formData.fum)
+    if (processedFormData.fum && !processedFormData.semanaGestacion) {
+      const fumDate = new Date(processedFormData.fum)
       const today = new Date()
       const diffTime = Math.abs(today.getTime() - fumDate.getTime())
       const diffWeeks = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7))
-      formData.semanaGestacion = diffWeeks.toString()
+      processedFormData.semanaGestacion = diffWeeks.toString()
+    }
+
+    // Create a new object with correct types and without the password
+    const { password, ...userData } = processedFormData
+    const userToSave = {
+      ...userData,
+      edad: Number.parseInt(userData.edad, 10) || 0,
+      talla: Number.parseInt(userData.talla, 10) || 0,
+      peso: Number.parseInt(userData.peso, 10) || 0,
+      semanaGestacion: Number.parseInt(userData.semanaGestacion, 10) || 0,
     }
 
     // Simulate registration
     setTimeout(() => {
-      localStorage.setItem("user", JSON.stringify(formData))
+      localStorage.setItem("user", JSON.stringify(userToSave))
       router.push("/home")
     }, 1000)
   }

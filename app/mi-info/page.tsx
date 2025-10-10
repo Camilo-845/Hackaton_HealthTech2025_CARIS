@@ -39,8 +39,14 @@ export default function MiInfoPage() {
       return
     }
 
-    const parsedUser = JSON.parse(userData)
-    setFormData(parsedUser)
+    try {
+      const parsedUser = JSON.parse(userData)
+      setFormData(prevData => ({ ...prevData, ...parsedUser }))
+    } catch (error) {
+      console.error("Corrupted user data in localStorage, redirecting.", error)
+      localStorage.removeItem("user")
+      router.push("/login")
+    }
   }, [router])
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -114,7 +114,7 @@ export default function EjercicioFisicoPage() {
             </div>
           </CardContent>
         </Card>
-
+        
         {/* Instructions */}
         <Card className="border-2">
           <CardContent className="p-6 space-y-4">

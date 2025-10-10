@@ -59,12 +59,7 @@ export default function RecomendacionesPage() {
                   <CardContent className="p-0">
                     <div className="flex gap-4">
                       <div className="relative w-32 h-32 flex-shrink-0 rounded-l-xl overflow-hidden bg-muted">
-                        <Image
-                          src={receta.imagen || "/placeholder.svg"}
-                          alt={receta.nombre}
-                          fill
-                          className="object-cover"
-                        />
+                       1
                       </div>
                       <div className="flex-1 py-4 pr-4 space-y-2">
                         <h3 className="font-bold text-sm leading-tight">{receta.nombre}</h3>
