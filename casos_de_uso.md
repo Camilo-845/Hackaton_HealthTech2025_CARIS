@@ -1,0 +1,41 @@
+# Vistas
+
+- Landing page, inicio de sesión registro
+- Inicio de sesion
+  - correo y contraseña
+- Registro
+  - Nombre, apellido, edad, talla, peso tipo_sangre, fecha_ultima_mestruación, semana de gestación
+- Home
+  - Barra de semana
+  - Sección de información
+  - Seccion de casas
+    - OnClick -> información de la casa, y boton para entrar
+- Mi info
+  - secciones de mi info
+- Vacunas (emiten alarma)
+  - Cards de barras con nombre vacuna y check List
+    - Cuendro se abre muestra información y campo para chekear
+- Micronutrientes (aparece en serccion de informacion)
+  - Info de los Micronutrientes en tarjetas
+- Signos de Alarma
+  - Formulario de sintomas
+  - Muestra información del causa del sintoma, y posible recomedación
+- Control de citas (emite recordatorios de asistencia)
+  - Boton de agregar nuevo cordatorio
+  - Calendario de citas
+- Mi nutricición
+  - 2 tarjetas (botones)
+    - recomendación de platos
+    - Calificación de platos
+- recomendación de platos
+  - tarjetas de diferentes platos de recetas, nombre, ingredientes
+    - Cuando se da click se muestran los detalles, como se hace, y los beneficios asociados
+- Calificación de plato
+  - Sección de tomar foto
+  - Calificación en estrellas
+  - Descripción de calificación del plato
+- Estimulación
+  - tarjetas con varios ejercicios de Estimulación
+- 1 Ejercicio de estimulación con vistas asociadas
+- Ejercicios fisicos (gimnasia prenatal)
+- 1 Ejercicios fisicos (gimnasia prenatal) con vistas asociadas
