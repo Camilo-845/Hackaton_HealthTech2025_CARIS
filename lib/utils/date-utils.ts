@@ -15,7 +15,7 @@ export function calcularDiaEnSemana(fum: string): number {
 }
 
 export function formatearFecha(fecha: string): string {
-  const date = new Date(fecha)
+  const date = new Date(`${fecha}T00:00:00`)
   return date.toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",

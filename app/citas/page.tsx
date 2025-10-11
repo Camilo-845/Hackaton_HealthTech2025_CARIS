@@ -17,13 +17,15 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Toaster } from "@/components/ui/toaster"
+import { Calendar } from "@/components/ui/calendar"
+import { format } from "date-fns"
+import { es } from "date-fns/locale"
 
 export default function CitasPage() {
   const router = useRouter()
@@ -31,8 +33,9 @@ export default function CitasPage() {
   const [citas, setCitas] = useState<Cita[]>([])
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingCita, setEditingCita] = useState<Cita | null>(null)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date())
   const [formData, setFormData] = useState({
-    fecha: "",
+    fecha: format(selectedDate || new Date(), "yyyy-MM-dd"),
     hora: "",
     motivo: "",
     lugar: "",
@@ -51,6 +54,17 @@ export default function CitasPage() {
       setCitas(JSON.parse(savedCitas))
     }
   }, [router])
+
+  useEffect(() => {
+    localStorage.setItem("citas", JSON.stringify(citas))
+  }, [citas])
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      fecha: format(selectedDate || new Date(), "yyyy-MM-dd"),
+    }))
+  }, [selectedDate])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -88,7 +102,7 @@ export default function CitasPage() {
       })
     }
 
-    setFormData({ fecha: "", hora: "", motivo: "", lugar: "", notas: "" })
+    setFormData({ fecha: format(selectedDate || new Date(), "yyyy-MM-dd"), hora: "", motivo: "", lugar: "", notas: "" })
     setEditingCita(null)
     setIsDialogOpen(false)
   }
@@ -120,7 +134,17 @@ export default function CitasPage() {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const citasOrdenadas = [...citas].sort((a, b) => {
+  const citasDelDia = citas.filter(
+    (cita) => {
+      const citaDate = new Date(cita.fecha);
+      const sDate = selectedDate || new Date();
+      return (
+        citaDate.getFullYear() === sDate.getFullYear() &&
+        citaDate.getMonth() === sDate.getMonth() &&
+        citaDate.getDate() === sDate.getDate()
+      );
+    }
+  ).sort((a, b) => {
     const dateA = new Date(`${a.fecha}T${a.hora}`)
     const dateB = new Date(`${b.fecha}T${b.hora}`)
     return dateA.getTime() - dateB.getTime()
@@ -173,20 +197,33 @@ export default function CitasPage() {
           </CardContent>
         </Card>
 
-        {/* Add Button */}
+        {/* Calendar */}
+        <Calendar
+          mode="single"
+          selected={selectedDate}
+          onSelect={(date) => {
+            setSelectedDate(date)
+            setIsDialogOpen(true)
+            setEditingCita(null)
+            setFormData((prev) => ({
+              ...prev,
+              fecha: format(date || new Date(), "yyyy-MM-dd"),
+              hora: "",
+              motivo: "",
+              lugar: "",
+              notas: "",
+            }))
+          }}
+          initialFocus
+          locale={es}
+          className="w-full max-w-lg mx-auto rounded-md border shadow"
+          classNames={{
+            day_today: "bg-[#ffe0e6] text-foreground",
+          }}
+        />
+
+        {/* Add/Edit Cita Dialog */}
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button
-              className="w-full rounded-full bg-[#ff95ac] hover:bg-[#ff95ac]/90 text-white py-6"
-              onClick={() => {
-                setEditingCita(null)
-                setFormData({ fecha: "", hora: "", motivo: "", lugar: "", notas: "" })
-              }}
-            >
-              <Plus className="w-5 h-5 mr-2" />
-              Agregar Nueva Cita
-            </Button>
-          </DialogTrigger>
           <DialogContent className="max-w-md">
             <DialogHeader>
               <DialogTitle>{editingCita ? "Editar Cita" : "Nueva Cita"}</DialogTitle>
@@ -258,11 +295,11 @@ export default function CitasPage() {
           </DialogContent>
         </Dialog>
 
-        {/* Appointments List */}
-        {citasOrdenadas.length > 0 ? (
-          <div className="space-y-4">
-            <h2 className="text-xl font-bold">Próximas Citas</h2>
-            {citasOrdenadas.map((cita) => {
+        {/* Appointments List for Selected Day */}
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold">Citas programadas</h2>
+          {citas.length > 0 ? (
+            citas.map((cita) => {
               const { status, color } = getCitaStatus(cita)
 
               return (
@@ -315,17 +352,17 @@ export default function CitasPage() {
                   </CardContent>
                 </Card>
               )
-            })}
-          </div>
-        ) : (
-          <Card className="border-2">
-            <CardContent className="p-12 text-center">
-              <CalendarIcon className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-sm text-muted-foreground">No tienes citas programadas</p>
-              <p className="text-xs text-muted-foreground mt-1">Agrega tu primera cita médica</p>
-            </CardContent>
-          </Card>
-        )}
+            })
+          ) : (
+            <Card className="border-2">
+              <CardContent className="p-12 text-center">
+                <CalendarIcon className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-sm text-muted-foreground">No tienes citas programadas para este día</p>
+                <p className="text-xs text-muted-foreground mt-1">Selecciona un día en el calendario para agregar una cita</p>
+              </CardContent>
+            </Card>
+          )}
+        </div>
       </main>
     </div>
   )
