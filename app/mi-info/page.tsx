@@ -18,7 +18,6 @@ import {
 } from "@/components/ui/select";
 import {
   ArrowLeft,
-  Save,
   UserIcon,
   LogOut,
   Stethoscope,
@@ -33,7 +32,6 @@ import { Toaster } from "@/components/ui/toaster";
 export default function MiInfoPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<User>({
     nombre: "",
     apellido: "",
@@ -62,33 +60,6 @@ export default function MiInfoPage() {
       router.push("/login");
     }
   }, [router]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    // Recalculate gestational week if FUM changed
-    if (formData.fum) {
-      const semana = calcularSemanaGestacion(formData.fum);
-      formData.semanaGestacion = semana;
-    }
-
-    // Save to localStorage
-    localStorage.setItem("user", JSON.stringify(formData));
-
-    setTimeout(() => {
-      setIsLoading(false);
-      toast({
-        title: "Cambios guardados",
-        description: "Tu información ha sido actualizada correctamente.",
-        className: "bg-[#aeebb8] border-[#aeebb8]",
-      });
-    }, 500);
-  };
-
-  const handleChange = (field: keyof User, value: string | number) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -182,21 +153,20 @@ export default function MiInfoPage() {
           </div>
         </div>
 
-        {/* Edit Form */}
+        {/* Display Form */}
         <Card className="border-2 shadow-lg">
           <CardHeader>
             <CardTitle>Información Personal</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="nombre">Nombre</Label>
                   <Input
                     id="nombre"
                     value={formData.nombre}
-                    onChange={(e) => handleChange("nombre", e.target.value)}
-                    required
+                    readOnly
                     className="rounded-xl"
                   />
                 </div>
@@ -205,8 +175,7 @@ export default function MiInfoPage() {
                   <Input
                     id="apellido"
                     value={formData.apellido}
-                    onChange={(e) => handleChange("apellido", e.target.value)}
-                    required
+                    readOnly
                     className="rounded-xl"
                   />
                 </div>
@@ -218,14 +187,9 @@ export default function MiInfoPage() {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => handleChange("email", e.target.value)}
-                  required
+                  readOnly
                   className="rounded-xl"
-                  disabled
                 />
-                <p className="text-xs text-muted-foreground">
-                  El correo no puede ser modificado
-                </p>
               </div>
 
               <div className="grid grid-cols-3 gap-4">
@@ -235,10 +199,7 @@ export default function MiInfoPage() {
                     id="edad"
                     type="number"
                     value={formData.edad}
-                    onChange={(e) =>
-                      handleChange("edad", Number.parseInt(e.target.value))
-                    }
-                    required
+                    readOnly
                     className="rounded-xl"
                   />
                 </div>
@@ -248,10 +209,7 @@ export default function MiInfoPage() {
                     id="talla"
                     type="number"
                     value={formData.talla}
-                    onChange={(e) =>
-                      handleChange("talla", Number.parseInt(e.target.value))
-                    }
-                    required
+                    readOnly
                     className="rounded-xl"
                   />
                 </div>
@@ -261,10 +219,7 @@ export default function MiInfoPage() {
                     id="peso"
                     type="number"
                     value={formData.peso}
-                    onChange={(e) =>
-                      handleChange("peso", Number.parseInt(e.target.value))
-                    }
-                    required
+                    readOnly
                     className="rounded-xl"
                   />
                 </div>
@@ -273,8 +228,8 @@ export default function MiInfoPage() {
               <div className="space-y-2">
                 <Label htmlFor="tipoSangre">Tipo de Sangre</Label>
                 <Select
-                  value={formData.tipoSangre}
-                  onValueChange={(value) => handleChange("tipoSangre", value)}
+                  value={formData.tipoSangre || ""}
+                  disabled
                 >
                   <SelectTrigger className="rounded-xl">
                     <SelectValue placeholder="Selecciona tu tipo" />
@@ -298,13 +253,9 @@ export default function MiInfoPage() {
                   id="fum"
                   type="date"
                   value={formData.fum}
-                  onChange={(e) => handleChange("fum", e.target.value)}
+                  readOnly
                   className="rounded-xl"
                 />
-                <p className="text-xs text-muted-foreground">
-                  La semana de gestación se calcula automáticamente desde esta
-                  fecha
-                </p>
               </div>
 
               <div className="space-y-2">
@@ -313,28 +264,11 @@ export default function MiInfoPage() {
                   id="semanaGestacion"
                   type="number"
                   value={formData.semanaGestacion}
-                  onChange={(e) =>
-                    handleChange(
-                      "semanaGestacion",
-                      Number.parseInt(e.target.value),
-                    )
-                  }
+                  readOnly
                   className="rounded-xl"
                 />
-                <p className="text-xs text-muted-foreground">
-                  Se actualiza automáticamente cada día basado en tu F.U.M.
-                </p>
               </div>
-
-              <Button
-                type="submit"
-                className="w-full rounded-full bg-[#c0d0f1] hover:bg-[#c0d0f1]/90 text-foreground"
-                disabled={isLoading}
-              >
-                <Save className="w-4 h-4 mr-2" />
-                {isLoading ? "Guardando..." : "Guardar Cambios"}
-              </Button>
-            </form>
+            </div>
           </CardContent>
         </Card>
 

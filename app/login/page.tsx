@@ -48,7 +48,7 @@ export default function LoginPage() {
             </div>
             <div>
               <CardTitle className="text-2xl">Iniciar Sesión</CardTitle>
-              <CardDescription>Ingresa a tu cuenta de Latido</CardDescription>
+              <CardDescription>Ingresa a tu cuenta de Lati2</CardDescription>
             </div>
           </CardHeader>
           <CardContent>

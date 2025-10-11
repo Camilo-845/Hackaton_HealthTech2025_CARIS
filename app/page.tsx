@@ -9,7 +9,7 @@ export default function LandingPage() {
       <header className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Heart className="w-8 h-8 text-[#fe7b8b] fill-[#fe7b8b]" />
-          <h1 className="text-2xl font-bold text-foreground">Latido</h1>
+          <h1 className="text-2xl font-bold text-foreground">Lati2</h1>
         </div>
         <div className="flex gap-2">
           <Button variant="ghost" asChild>
@@ -28,7 +28,7 @@ export default function LandingPage() {
 
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-lg border border-border">
             <p className="text-lg text-foreground text-balance leading-relaxed">
-              Latido te acompaña en tu proceso prenatal, con educación, ejercicios e IA
+              Lati2 te acompaña en tu proceso prenatal, con educación, ejercicios e IA
             </p>
           </div>
 
@@ -66,7 +66,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="p-6 text-center text-sm text-muted-foreground">
-        <p>© 2025 Latido. Cuidando tu embarazo con amor y tecnología.</p>
+        <p>© 2025 Lati2. Cuidando tu embarazo con amor y tecnología.</p>
       </footer>
     </div>
   )

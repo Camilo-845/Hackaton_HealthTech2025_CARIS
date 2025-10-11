@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata = {
-  title: "Latido - Tu camino a la vida",
+  title: "Lati2 - Tu camino a la vida",
   description: "Aplicación de control prenatal con educación, ejercicios e IA",
     generator: 'v0.app'
 }
