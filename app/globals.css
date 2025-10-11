@@ -190,16 +190,4 @@ body {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   width: 100%;
   text-align: center;
-/* Animations for Interactive Exercise */
-@keyframes fade-in {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.5s ease-in-out;
 }

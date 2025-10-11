@@ -53,18 +53,15 @@ export default function MiInfoPage() {
       return;
     }
 
-    const parsedUser = JSON.parse(userData);
-    setFormData(parsedUser);
-  }, [router]);
     try {
-      const parsedUser = JSON.parse(userData)
-      setFormData(prevData => ({ ...prevData, ...parsedUser }))
+      const parsedUser = JSON.parse(userData);
+      setFormData(parsedUser);
     } catch (error) {
-      console.error("Corrupted user data in localStorage, redirecting.", error)
-      localStorage.removeItem("user")
-      router.push("/login")
+      console.error("Corrupted user data in localStorage, redirecting.", error);
+      localStorage.removeItem("user");
+      router.push("/login");
     }
-  }, [router])
+  }, [router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,6 +111,7 @@ export default function MiInfoPage() {
           <div className="w-20"></div>
         </div>
       </header>
+
       {/* Navigation Cards */}
       <div className="space-y-4 ">
         <div className="grid grid-cols-2 gap-4">
