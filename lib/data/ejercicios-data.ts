@@ -9,12 +9,16 @@ export const ejerciciosEstimulacion: Ejercicio[] = [
     instrucciones: [
       "Siéntate o recuéstate en una posición cómoda",
       "Aplica aceite o crema hidratante en tus manos",
-      "Realiza movimientos circulares suaves en tu abdomen",
+      "Observa el video para aprender la técnica de masaje",
       "Habla o canta suavemente mientras masajeas",
       "Continúa por 5-10 minutos",
     ],
     semanaRecomendada: 16,
     duracion: "5-10 minutos",
+    recursoInteractivo: {
+      tipo: "video",
+      contenido: "https://www.youtube.com/embed/hJ1MAH0Kggc",
+    },
   },
   {
     id: "e2",
@@ -22,14 +26,27 @@ export const ejerciciosEstimulacion: Ejercicio[] = [
     tipo: "estimulacion",
     descripcion: "Exponer al bebé a música suave para estimular su desarrollo auditivo y crear un vínculo emocional.",
     instrucciones: [
-      "Elige música clásica o melodías suaves",
-      "Coloca auriculares cerca de tu abdomen (no directamente sobre él)",
-      "Mantén el volumen bajo y agradable",
-      "Observa las reacciones de tu bebé",
+      "Ponte cómoda y busca un lugar tranquilo.",
+      "Dale play a la música y relájate.",
+      "Coloca tus manos en tu vientre y siente la música con tu bebé.",
+      "Observa las reacciones de tu bebé, puede que sientas suaves movimientos.",
       "Realiza esta actividad 2-3 veces al día por 10-15 minutos",
     ],
     semanaRecomendada: 20,
     duracion: "10-15 minutos",
+    recursoInteractivo: {
+      tipo: "musica",
+      contenido: [
+        {
+          titulo: "MTurkish March",
+          url: "/music/Mozart.mp3",
+        },
+        {
+          titulo: "Twinkle Twinkle Little Star",
+          url: "/music/Twinkle.mp3",
+        },
+      ],
+    },
   },
   {
     id: "e3",
@@ -37,7 +54,7 @@ export const ejerciciosEstimulacion: Ejercicio[] = [
     tipo: "estimulacion",
     descripcion: "Leer cuentos o hablar con tu bebé para estimular el reconocimiento de tu voz.",
     instrucciones: [
-      "Elige un libro de cuentos o poemas",
+      "Elige uno de los cuentos de la lista.",
       "Siéntate cómodamente",
       "Lee en voz alta con entonación clara",
       "Coloca tu mano en el abdomen mientras lees",
@@ -45,6 +62,23 @@ export const ejerciciosEstimulacion: Ejercicio[] = [
     ],
     semanaRecomendada: 24,
     duracion: "10-15 minutos",
+    recursoInteractivo: {
+      tipo: "texto",
+      contenido: [
+        {
+          titulo: "El Sol y la Luna",
+          texto: "Había una vez un Sol muy grande y una Luna muy brillante que vivían en el cielo. Se querían mucho y les encantaba jugar juntos. Un día, decidieron jugar a las escondidas. La Luna se escondió detrás de una nube y el Sol la buscó por todo el cielo. Cuando la encontró, se rieron tanto que iluminaron todo el universo.",
+        },
+        {
+          titulo: "La Estrellita Viajera",
+          texto: "Una pequeña estrella quería conocer el mundo. Cada noche, viajaba un poquito más lejos. Vio planetas de colores, cometas brillantes y nubes de algodón. Estaba muy feliz de ver tantas cosas nuevas. Cuando volvía a casa, le contaba a sus hermanas estrellas todas sus aventuras.",
+        },
+        {
+          titulo: "El Bebé Curioso",
+          texto: "Dentro de una barriguita muy calentita, vivía un bebé muy curioso. Le encantaba escuchar la voz de su mamá y sentir sus caricias. A veces, daba pataditas de alegría. Estaba deseando conocer el mundo de fuera y dar un gran abrazo a su mamá.",
+        },
+      ],
+    },
   },
   {
     id: "e4",
@@ -52,14 +86,18 @@ export const ejerciciosEstimulacion: Ejercicio[] = [
     tipo: "estimulacion",
     descripcion: "Usar luz suave para estimular la respuesta visual del bebé en desarrollo.",
     instrucciones: [
-      "Usa una linterna pequeña con luz suave",
-      "Mueve la luz lentamente sobre tu abdomen",
+      "Busca un lugar oscuro y tranquilo.",
+      "Activa la animación de luz.",
+      "Mueve tu teléfono lentamente sobre tu abdomen.",
       "Observa si tu bebé responde con movimientos",
-      "Realiza movimientos circulares y de lado a lado",
       "Practica por 5 minutos, 1-2 veces al día",
     ],
     semanaRecomendada: 28,
     duracion: "5 minutos",
+    recursoInteractivo: {
+      tipo: "animacion",
+      contenido: "LuzSuave",
+    },
   },
 ]
 

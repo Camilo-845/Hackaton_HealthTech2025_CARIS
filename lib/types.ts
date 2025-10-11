@@ -59,6 +59,10 @@ export interface Ejercicio {
   imagen?: string
   precauciones?: string[]
   dificultad?: "baja" | "media" | "alta"
+  recursoInteractivo?: {
+    tipo: "musica" | "video" | "texto" | "animacion"
+    contenido: string | { titulo: string; texto: string }[] | { titulo: string; url: string }[]
+  }
 }
 
 export interface ContenidoSemanal {
