@@ -1,4 +1,4 @@
-import type { ContenidoSemanal } from "@/lib/types"
+import type { ContenidoSemanal } from "@/lib/types";
 
 export const contenidoSemanal: ContenidoSemanal[] = [
   {
@@ -99,15 +99,17 @@ export const contenidoSemanal: ContenidoSemanal[] = [
     ],
     micronutrientes: ["Hierro", "Vitamina K", "Calcio"],
   },
-]
+];
 
 export function obtenerContenidoSemana(semana: number): ContenidoSemanal {
   // Find the closest week content
   const contenido =
     contenidoSemanal.find((c) => c.semana === semana) ||
     contenidoSemanal.reduce((prev, curr) =>
-      Math.abs(curr.semana - semana) < Math.abs(prev.semana - semana) ? curr : prev,
-    )
+      Math.abs(curr.semana - semana) < Math.abs(prev.semana - semana)
+        ? curr
+        : prev,
+    );
 
-  return contenido
+  return contenido;
 }
