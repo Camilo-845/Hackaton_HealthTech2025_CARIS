@@ -184,7 +184,6 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        
         <div className="grid grid-cols-2 gap-4">
           <Link href="/signos-alarma">
             <Button className="w-full h-auto py-4 rounded-2xl bg-[#fe7b8b] hover:bg-[#fe7b8b]/90 text-white flex flex-col gap-2">
@@ -200,58 +199,6 @@ export default function HomePage() {
           </Link>
         </div>
       </main>
-
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-border">
-        <div className="flex justify-around items-center py-3 px-4">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex flex-col gap-1"
-            asChild
-          >
-            <Link href="/home">
-              <Heart className="w-5 h-5 text-[#fe7b8b] fill-[#fe7b8b]" />
-              <span className="text-xs font-semibold text-[#fe7b8b]">
-                Inicio
-              </span>
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex flex-col gap-1"
-            asChild
-          >
-            <Link href="/nutricion">
-              <Apple className="w-5 h-5" />
-              <span className="text-xs">Nutrición</span>
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex flex-col gap-1"
-            asChild
-          >
-            <Link href="/citas">
-              <Bell className="w-5 h-5" />
-              <span className="text-xs">Citas</span>
-            </Link>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex flex-col gap-1"
-            asChild
-          >
-            <Link href="/mi-info">
-              <User className="w-5 h-5" />
-              <span className="text-xs">Perfil</span>
-            </Link>
-          </Button>
-        </div>
-      </nav>
     </div>
   );
 }

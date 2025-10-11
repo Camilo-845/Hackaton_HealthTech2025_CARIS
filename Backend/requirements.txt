@@ -1,0 +1,5 @@
+Flask
+pydantic
+google-generativeai
+python-dotenv
+Flask-Cors
