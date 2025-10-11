@@ -23,7 +23,34 @@ import {
   calcularDiaEnSemana,
 } from "@/lib/utils/date-utils";
 import { obtenerContenidoSemana } from "@/lib/data/contenido-semanal";
-import type { User as UserType } from "@/lib/types";
+import WheelCarousel from "@/components/ui/wheel-carousel";
+
+const slides = [
+  {
+    alt: "Slide 1",
+    src: "/casa_mi_info.png",
+    title: "Mi Info",
+    href: "/mi-info",
+  },
+  {
+    alt: "Slide 2",
+    src: "/casa_mi_nutrición.png",
+    title: "Mi Nutrición",
+    href: "/nutricion",
+  },
+  {
+    alt: "Slide 3",
+    src: "/casa_ejercicios.png",
+    title: "Ejercicios",
+    href: "/ejercicios",
+  },
+  {
+    alt: "Slide 4",
+    src: "/casa_estimulacion.png",
+    title: "Estimulación",
+    href: "/estimulacion",
+  },
+];
 
 export default function HomePage() {
   const router = useRouter();
@@ -112,6 +139,10 @@ export default function HomePage() {
             </div>
           </CardContent>
         </Card>
+        {/* Wheel Carousel Section */}
+        <div className="space-y-4 flex flex-col items-center">
+          <WheelCarousel slides={slides} />
+        </div>
 
         {/* Information Section */}
         <Card className="border-2 shadow-lg bg-gradient-to-br from-[#c0d0f1]/10 to-[#bae4e2]/10">
@@ -153,147 +184,7 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        {/* Casas Section */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-bold">Tus Módulos</h3>
-          <div className="grid grid-cols-2 gap-4">
-            {/* Bot Latido */}
-            <Link href="/chatbot">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#ff95ac]/20 to-[#fe7b8b]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#fe7b8b]/20 rounded-2xl flex items-center justify-center">
-                    <MessageCircle className="w-7 h-7 text-[#fe7b8b]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Bot Latido</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Asistente IA
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Estimulación */}
-            <Link href="/estimulacion">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#d7e874]/20 to-[#aeebb8]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#aeebb8]/20 rounded-2xl flex items-center justify-center">
-                    <Baby className="w-7 h-7 text-[#aeebb8]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Estimulación</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Ejercicios
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Mi Nutrición */}
-            <Link href="/nutricion">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#ffb3a3]/20 to-[#ffec61]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#ffb3a3]/20 rounded-2xl flex items-center justify-center">
-                    <Apple className="w-7 h-7 text-[#ffb3a3]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Mi Nutrición</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Alimentación
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Mi Info */}
-            <Link href="/mi-info">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#c0d0f1]/20 to-[#bae4e2]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#c0d0f1]/20 rounded-2xl flex items-center justify-center">
-                    <User className="w-7 h-7 text-[#c0d0f1]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Mi Info</h4>
-                    <p className="text-xs text-muted-foreground mt-1">Perfil</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Vacunas */}
-            <Link href="/vacunas">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#bae4e2]/20 to-[#c0d0f1]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#bae4e2]/20 rounded-2xl flex items-center justify-center">
-                    <Stethoscope className="w-7 h-7 text-[#bae4e2]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Vacunas</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Control
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Ejercicios */}
-            <Link href="/ejercicios">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#d7e874]/20 to-[#ffec61]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#d7e874]/20 rounded-2xl flex items-center justify-center">
-                    <Activity className="w-7 h-7 text-[#d7e874]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Ejercicios</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Físicos
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Micronutrientes */}
-            <Link href="/micronutrientes">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#ffec61]/20 to-[#d7e874]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#ffec61]/20 rounded-2xl flex items-center justify-center">
-                    <Pill className="w-7 h-7 text-[#ffec61]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Micronutrientes</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Vitaminas
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-
-            {/* Citas */}
-            <Link href="/citas">
-              <Card className="border-2 hover:shadow-xl transition-all hover:scale-105 cursor-pointer bg-gradient-to-br from-[#ff95ac]/20 to-[#fe7b8b]/20">
-                <CardContent className="p-6 space-y-3 text-center">
-                  <div className="w-14 h-14 mx-auto bg-[#ff95ac]/20 rounded-2xl flex items-center justify-center">
-                    <Bell className="w-7 h-7 text-[#ff95ac]" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-sm">Mis Citas</h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      Calendario
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        </div>
-
-        {/* Quick Actions */}
+        
         <div className="grid grid-cols-2 gap-4">
           <Link href="/signos-alarma">
             <Button className="w-full h-auto py-4 rounded-2xl bg-[#fe7b8b] hover:bg-[#fe7b8b]/90 text-white flex flex-col gap-2">
