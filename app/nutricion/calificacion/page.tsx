@@ -66,7 +66,7 @@ export default function CalificacionPage() {
 
     try {
       const response = await fetch(
-        "https://df11f030f2dd.ngrok-free.app/analyze-recipe",
+        "https://ae18ec11bee2.ngrok-free.app/analyze-recipe",
         {
           method: "POST",
           body: formData,
