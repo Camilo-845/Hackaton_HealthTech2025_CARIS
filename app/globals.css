@@ -184,10 +184,14 @@ body {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  color: black;
+  color: white;
   font-weight: bold;
   font-size: 1.25rem;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: -moz-max-content;
+  width: max-content;
+  max-width: 90%;
   text-align: center;
 }
