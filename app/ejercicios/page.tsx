@@ -6,7 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Activity, Clock, AlertCircle } from "lucide-react"
+import { ArrowLeft, Activity, Clock, AlertCircle, Play, ArrowDownUp, Timer } from "lucide-react"
 import { ejerciciosFisicos } from "@/lib/data/ejercicios-data"
 import type { Ejercicio, User } from "@/lib/types"
 
@@ -88,6 +88,51 @@ export default function EjerciciosFisicosPage() {
             </div>
           </CardContent>
         </Card>
+
+        <div className="space-y-4">
+          <h2 className="text-xl font-bold">Sesiones Interactivas</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link href="/ejercicios/kegel-interactivo">
+              <Card className="border-2 border-dashed border-[#d7e874] bg-gradient-to-br from-[#d7e874]/10 to-[#ffec61]/10 cursor-pointer hover:shadow-xl transition-all h-full">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-[#d7e874]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Play className="w-8 h-8 text-[#d7e874]" />
+                  </div>
+                  <h3 className="font-bold text-lg mt-3">Kegel Interactivo</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Sesión guiada para fortalecer tu suelo pélvico.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/ejercicios/sentadillas-interactivo">
+              <Card className="border-2 border-dashed border-[#ffb3a3] bg-gradient-to-br from-[#ffb3a3]/10 to-[#ffec61]/10 cursor-pointer hover:shadow-xl transition-all h-full">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-[#ffb3a3]/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <ArrowDownUp className="w-8 h-8 text-[#ffb3a3]" />
+                  </div>
+                  <h3 className="font-bold text-lg mt-3">Sentadillas Interactivas</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Fortalece tus piernas con esta rutina de series y repeticiones.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+            <Link href="/ejercicios/caminata-interactiva">
+              <Card className="border-2 border-dashed border-green-300 bg-gradient-to-br from-green-300/10 to-lime-300/10 cursor-pointer hover:shadow-xl transition-all h-full">
+                <CardContent className="p-4 flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-green-300/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Timer className="w-8 h-8 text-green-500" />
+                  </div>
+                  <h3 className="font-bold text-lg mt-3">Caminata Prenatal</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Una sesión de 20 minutos con hitos para mantenerte motivada.
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          </div>
+        </div>
 
         {/* Exercises List */}
         <div className="space-y-4">
