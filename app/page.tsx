@@ -84,7 +84,7 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="p-6 text-center text-sm text-muted-foreground">
-        <p>© 2025 Latido. Cuidando tu embarazo con amor y tecnología.</p>
+        <p>© 2025 Lati2. Cuidando tu embarazo con amor y tecnología.</p>
       </footer>
     </div>
   );

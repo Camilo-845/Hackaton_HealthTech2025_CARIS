@@ -10,11 +10,25 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Checkbox } from "@/components/ui/checkbox"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Heart, ArrowLeft } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+import { Toaster } from "@/components/ui/toaster"
 
 export default function RegistroPage() {
   const router = useRouter()
+  const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [isTermsDialogOpen, setIsTermsDialogOpen] = useState(false)
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -31,6 +45,16 @@ export default function RegistroPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+
+    if (!termsAccepted) {
+      setIsLoading(false)
+      toast({
+        title: "Error de registro",
+        description: "Debes aceptar los términos y condiciones para registrarte.",
+        variant: "destructive",
+      })
+      return
+    }
 
     // Create a mutable copy to work with
     const processedFormData = { ...formData }
@@ -55,10 +79,8 @@ export default function RegistroPage() {
     }
 
     // Simulate registration
-    setTimeout(() => {
-      localStorage.setItem("user", JSON.stringify(userToSave))
-      router.push("/home")
-    }, 1000)
+    localStorage.setItem("user", JSON.stringify(userToSave))
+    router.push("/home")
   }
 
   const handleChange = (field: string, value: string) => {
@@ -67,6 +89,7 @@ export default function RegistroPage() {
 
   return (
     <div className="min-h-screen flex flex-col p-4 pb-8">
+      <Toaster />
       <div className="mb-4">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/" className="gap-2">
@@ -84,7 +107,7 @@ export default function RegistroPage() {
             </div>
             <div>
               <CardTitle className="text-2xl">Crear Cuenta</CardTitle>
-              <CardDescription>Comienza tu viaje con Latido</CardDescription>
+              <CardDescription>Comienza tu viaje con Lati2</CardDescription>
             </div>
           </CardHeader>
           <CardContent>
@@ -219,6 +242,49 @@ export default function RegistroPage() {
                   onChange={(e) => handleChange("semanaGestacion", e.target.value)}
                   className="rounded-xl"
                 />
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="terms"
+                  checked={termsAccepted}
+                  onCheckedChange={(checked) => setTermsAccepted(checked as boolean)}
+                />
+                <Label htmlFor="terms" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Acepto los
+                  <Dialog open={isTermsDialogOpen} onOpenChange={setIsTermsDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button variant="link" className="p-0 h-auto text-[#c0d0f1] hover:underline">
+                        Términos y Condiciones
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>Términos y Condiciones</DialogTitle>
+                        <DialogDescription>
+                          Lee atentamente nuestros términos de servicio y política de privacidad.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="max-h-[400px] overflow-y-auto text-sm text-muted-foreground">
+                        <p className="mb-4">
+                          Al registrarte en Lati2, aceptas los siguientes términos y condiciones. Nos comprometemos a proteger tu privacidad y la seguridad de tus datos personales. La información que nos proporcionas será utilizada exclusivamente para ofrecerte un servicio personalizado y mejorar tu experiencia durante el embarazo.
+                        </p>
+                        <p className="mb-4">
+                          Recopilamos datos como tu nombre, apellido, correo electrónico, edad, talla, peso, tipo de sangre y fecha de última menstruación (F.U.M.). Estos datos son esenciales para calcular tu semana de gestación, ofrecerte recomendaciones personalizadas y recordatorios relevantes para tu salud y la de tu bebé.
+                        </p>
+                        <p className="mb-4">
+                          Tu información no será compartida con terceros sin tu consentimiento explícito, salvo que sea requerido por ley. Implementamos medidas de seguridad robustas para proteger tus datos contra accesos no autorizados, alteraciones o destrucciones. Tienes derecho a acceder, rectificar, cancelar y oponerte al tratamiento de tus datos personales en cualquier momento.
+                        </p>
+                        <p className="mb-4">
+                          Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento. Te notificaremos sobre cualquier cambio significativo. El uso continuado de la aplicación después de dichas modificaciones constituirá tu aceptación de los nuevos términos.
+                        </p>
+                        <p>
+                          Para cualquier consulta o ejercicio de tus derechos, puedes contactarnos a través de [correo electrónico de contacto].
+                        </p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </Label>
               </div>
 
               <Button
