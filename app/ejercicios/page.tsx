@@ -160,7 +160,7 @@ export default function EjerciciosFisicosPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3 className="font-bold text-sm leading-tight">{ejercicio.nombre}</h3>
+                          <h3 className="font-bold text-sm leading-tight overflow-hidden text-ellipsis whitespace-nowrap">{ejercicio.nombre}</h3>
                           <div className="flex gap-1 flex-shrink-0">
                             {recomendado && (
                               <Badge variant="secondary" className="bg-[#aeebb8]/20 text-foreground text-xs">

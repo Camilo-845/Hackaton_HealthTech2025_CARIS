@@ -65,10 +65,10 @@ export default function KegelGamePage() {
   }, [reps, sets, phase, gameState])
 
   useEffect(() => {
-    if (timer === 0) {
+    if (timer === 0 && (gameState === "playing" || gameState === "break")) {
       handleNextPhase()
     }
-  }, [timer, handleNextPhase])
+  }, [timer, handleNextPhase, gameState])
 
   const resetGame = () => {
     setGameState("idle")

@@ -134,7 +134,6 @@ export const ejerciciosFisicos: Ejercicio[] = [
     ],
     semanaRecomendada: 12,
     duracion: "5-10 minutos",
-    repeticiones: "10 repeticiones x 3 series",
     dificultad: "baja",
   },
   {
@@ -151,7 +150,6 @@ export const ejerciciosFisicos: Ejercicio[] = [
     ],
     semanaRecomendada: 20,
     duracion: "5-10 minutos",
-    repeticiones: "10-15 repeticiones x 2-3 series",
     dificultad: "media",
     precauciones: ["Usa una silla para apoyo si es necesario", "No bajes demasiado", "Detente si sientes presión"],
   },

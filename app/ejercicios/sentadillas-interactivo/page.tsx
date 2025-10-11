@@ -64,10 +64,10 @@ export default function SentadillasGamePage() {
   }, [gameState])
 
   useEffect(() => {
-    if (timer <= 0) {
+    if (timer <= 0 && (gameState === "playing" || gameState === "break")) {
       handleNextPhase()
     }
-  }, [timer, handleNextPhase])
+  }, [timer, handleNextPhase, gameState])
 
   const resetGame = () => {
     setGameState("idle")
@@ -83,7 +83,7 @@ export default function SentadillasGamePage() {
   }
 
   const togglePause = () => {
-    setGameState(gameState === "paused" ? (timer > 0 ? gameState : "playing") : "paused")
+    setGameState(gameState === "paused" ? "playing" : "paused")
   }
 
   const getPhaseImage = () => {
