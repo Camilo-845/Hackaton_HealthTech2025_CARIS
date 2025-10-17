@@ -2,36 +2,38 @@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const teamMembers = [
   {
     name: "Isabella Orejarena",
     role: "Enfermería",
-    avatar: "/placeholder-user.jpg",
+    avatar: "/Profiles/IsabellaProfile.jpg",
     fallback: "IO",
   },
   {
     name: "Angella Sanchez",
     role: "Enfermería",
-    avatar: "/placeholder-user.jpg",
+    avatar: "/Profiles/AngellaProfile.jpg",
     fallback: "AS",
   },
   {
     name: "Camilo Sarmiento",
     role: "Ingeniería de Sistemas",
-    avatar: "/placeholder-user.jpg",
+    avatar: "/Profiles/CamiloProfile.jpg",
     fallback: "CS",
   },
   {
     name: "Rossimar Jimenez",
     role: "Ingeniería de Sistemas",
-    avatar: "/placeholder-user.jpg",
+    avatar: "/Profiles/RossimarProfile.jpg",
     fallback: "RJ",
   },
   {
     name: "Santiago Cavadia",
     role: "Ingeniería Electrónica",
-    avatar: "/placeholder-user.jpg",
+    avatar: "/Profiles/SantiagoProfile.jpg",
     fallback: "SC",
   },
 ];
@@ -51,12 +53,24 @@ export default function AboutUs() {
       {/* Header */}
       <header className="p-4 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <Image
-            src="/Lati2osLogo.png"
-            alt="Lati2os Logo"
-            width={180}
-            height={50}
-          />
+          <Link href="/">
+            <Image
+              src="/Lati2osLogo.png"
+              alt="Lati2os Logo"
+              width={180}
+              height={50}
+            />
+          </Link>
+        </div>
+        <div className="flex gap-2 text-[#FE7AA5]">
+          <Button variant="ghost" asChild>
+            <Link href="/sobre-nosotros">Sobre Nostros</Link>
+          </Button>
+        </div>
+        <div className="flex gap-2 text-[#FE7AA5]">
+          <Button variant="ghost" asChild>
+            <Link href="/login">Iniciar Sesión</Link>
+          </Button>
         </div>
       </header>
 
@@ -68,9 +82,9 @@ export default function AboutUs() {
                 Sobre Nosotros
               </h1>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                Somos un equipo de apasionados desarrolladores, diseñadores y
-                estudiantes dedicados a crear soluciones innovadoras que
-                resuelvan problemas del mundo real.
+                Somos un equipo interdiciplinario de estudiantes conectados bajo
+                una misma sintonia de este grandioso proyecto llamado Lati2 del
+                que hemos dado y seguiremos dando lo mejor de nosotros.
               </p>
             </div>
           </div>
@@ -117,7 +131,7 @@ export default function AboutUs() {
                         <Avatar
                           className={`w-24 h-24 border-4 border-gray dark:border-gray-800 transition-transform duration-500 ease-in-out`}
                           style={{
-                            transform: `rotate(${-rotation}deg) scale(${selectedIndex === index ? 1.3 : 1})`,
+                            transform: `rotate(${-rotation}deg) scale(${selectedIndex === index ? 1.4 : 1})`,
                             willChange: "transform",
                           }}
                         >

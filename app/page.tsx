@@ -16,7 +16,12 @@ export default function LandingPage() {
             height={50}
           />
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 text-[#FE7AA5]">
+          <Button variant="ghost" asChild>
+            <Link href="/sobre-nosotros">Sobre Nostros</Link>
+          </Button>
+        </div>
+        <div className="flex gap-2 text-[#FE7AA5]">
           <Button variant="ghost" asChild>
             <Link href="/login">Iniciar Sesión</Link>
           </Button>
